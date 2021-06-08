@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 /* css */
 import { Form, Button, Modal } from "react-bootstrap";
 import "../css/ListComponent.css";
+import "../css/Modal.css";
 /* axios */
 import axios from "axios";
 export const ListComponent = (props) => {
@@ -131,7 +132,7 @@ export default class TaskList extends Component {
   }
 
   exerciseList() {
-    return this.state.tasks.map((currentTask) => {
+    return this.state.tasks.map((currentTask, index) => {
       return (
         <ListComponent
           tasks={currentTask}
@@ -150,8 +151,12 @@ export default class TaskList extends Component {
           <Modal show={this.state.show} onHide={this.handleClose}>
             <Form onSubmit={this.onSubmit}>
               <Form.Group className="mb-3" controlId="formBasicText">
-                <Form.Label>Description :</Form.Label>
+                <Form.Label className="d-flex justify-content-center label-header-modal">
+                  Edit task
+                </Form.Label>
                 <Form.Control
+                  id="input-form-modal"
+                  placeholder="Task name"
                   type="text"
                   required
                   value={this.state.description}
@@ -159,14 +164,26 @@ export default class TaskList extends Component {
                 />
               </Form.Group>
 
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
+              <div className="d-flex justify-content-center">
+                <button type="submit" className="modal-btn prime">
+                  Save
+                </button>
+                <Button
+                  variant="secondary"
+                  className="modal-btn secondary"
+                  onClick={this.handleClose}
+                >
+                  Cancel
+                </Button>
+              </div>
             </Form>
           </Modal>
         </div>
         <div className="d-flex justify-content-center ListSection">
-          <div className="ListContainer">{this.exerciseList()}</div>
+          <div className="ListContainer">
+            <h3>Tasks</h3>
+            {this.exerciseList()}
+          </div>
         </div>
       </div>
     );

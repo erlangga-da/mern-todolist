@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 /* css */
 import { Form, Button, Modal } from "react-bootstrap";
 import "../css/ButtonAdd.css";
+import "../css/Modal.css";
 /* axios */
 import axios from "axios";
 
@@ -24,18 +25,26 @@ export const AddModal = (props) => {
       <Modal show={show} onHide={handleClose}>
         <Form onSubmit={props.onSubmit}>
           <Form.Group className="mb-3" controlId="formBasicText">
-            <Form.Label>Task :</Form.Label>
+            <Form.Label className="d-flex justify-content-center label-header-modal">
+              Create new task
+            </Form.Label>
             <Form.Control
+              id="input-form-modal"
+              placeholder="Task name"
               type="text"
               required
               value={props.value}
               onChange={props.onChange}
             />
           </Form.Group>
-
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
+          <div className="d-flex justify-content-center">
+            <button type="submit" className="modal-btn prime">
+              Add Task
+            </button>
+            <Button variant="secondary" className="modal-btn secondary" onClick={handleClose}>
+              Cancel
+            </Button>
+          </div>
         </Form>
       </Modal>
     </div>

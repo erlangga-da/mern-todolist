@@ -1,0 +1,50 @@
+.modal-content{
+    background-color: var(--card-bg) !important;
+    border-radius: 19px !important;
+    padding: 20px !important;
+    font-family: 'poppins';
+}
+.modal-btn{
+    border: none;
+    border-radius: 13px !important;
+    padding: 12px 0px;
+    width: 110px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+.modal-btn.prime{
+    margin-right: 17px;
+}
+.prime{
+    background: var(--btn-color-primary);
+}
+.secondary{
+    background: var(--btn-color-secondary)!important;
+    border: none !important;
+}
+.label-header-modal{
+    color: var(--text-color);
+    margin-bottom: 18px;
+    font-weight: 500;
+}
+@media screen and (min-width: 576px){
+    .modal-dialog {
+        max-width: 400px !important;
+    }
+}
+#input-form-modal{
+    background: var(--card-bg);
+    border: 3px solid var(--btn-color-secondary);
+    border-radius: 11px;
+    height: 50px;
+    color: var(--text-color);
+}
+.form-control:focus {
+    box-shadow: none !important;
+}
+.btn-secondary:hover {
+    color: #fff;
+    background-color: var(--btn-color-secondary) !important;
+    border-color: transparent;
+    border: none;
+}

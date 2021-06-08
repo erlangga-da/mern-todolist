@@ -1,12 +1,18 @@
-:root{
-    --bg: #181820;
-    --card-bg: #21212B;
-    --main-color: #FC76A1;
-    --text-color: #FFF;
+:root {
+  --bg: #181820;
+  --card-bg: #21212b;
+  --btn-color-primary: linear-gradient(
+    243.93deg,
+    #fd9d7b 11.55%,
+    #fc76a1 39.74%,
+    #be41da 90.4%
+  );
+  --btn-color-secondary: #43435c;
+  --text-color: #fff;
 
-    --text-color-dummy: #3C4963;
+  --text-color-dummy: #3c4963;
 }
-html{
-    font-family: 'Poppins';
-    background-color: var(--bg);
+html {
+  font-family: "Poppins";
+  background-color: var(--bg);
 }

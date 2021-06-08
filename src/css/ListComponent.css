@@ -4,13 +4,19 @@
 .ListSection{
     background-color: var(--bg);
 }
+.ListContainer h3{
+    color: var(--text-color);
+    margin: 30px 0px;
+    font-size: 23px;
+    margin-bottom: 15px;
+    font-family: 'Poppins';
+}
 .ListComponent{
     background-color: var(--card-bg);
     display: flex;
     width: 100%;
     height: fit-content;
     border-radius: 14px;
-    color: var(--text-color-dummy);
     padding: 15px 15px;
     margin: 12px 0px;
 }
