@@ -1,0 +1,67 @@
+@import url(./index.css);
+
+
+.ListSection{
+    background-color: var(--bg);
+}
+.ListComponent{
+    background-color: var(--card-bg);
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    border-radius: 14px;
+    color: var(--text-color-dummy);
+    padding: 15px 15px;
+    margin: 12px 0px;
+}
+.ListComponent .text-container{
+    width: 450px;
+    height: 20px;
+    font-weight: 500;
+    font-size: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-family: 'Poppins';
+    color: var(--text-color);
+}
+.ListComponent ul{
+    margin: 0;
+    margin-left: 10px;
+    list-style-type: none;
+    padding: 0;
+    opacity: 0;
+    transition: .2s ease-in;
+}
+.ListComponent ul li{
+    display: inline;
+    margin-right: 20px;
+}
+.ListComponent ul li#delete{
+    margin-right: 0px;
+}
+.ListComponent ul li a{
+    color: var(--text-color);
+}
+
+/* interact */
+.ListComponent:hover > ul{
+    opacity: 1;
+}
+
+/* mobile */
+@media screen and (max-width: 600px){
+    .ListComponent .text-container{
+        width: 300px;
+    }
+}
+@media screen and (max-width: 440px){
+    .ListComponent .text-container{
+        width: 250px;
+    }
+}
+@media screen and (max-width: 360px){
+    .ListComponent .text-container{
+        width: 180px;
+    }
+}
