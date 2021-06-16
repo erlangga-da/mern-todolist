@@ -36,12 +36,24 @@ export const AddModal = (props) => {
               value={props.value}
               onChange={props.onChange}
             />
+            <Form.Control
+              id="input-form-modal"
+              placeholder="Task name"
+              type="file"
+              name="file"
+              required
+              onChange={props.onChangeFile}
+            />
           </Form.Group>
           <div className="d-flex justify-content-center">
             <button type="submit" className="modal-btn prime">
               Add Task
             </button>
-            <Button variant="secondary" className="modal-btn secondary" onClick={handleClose}>
+            <Button
+              variant="secondary"
+              className="modal-btn secondary"
+              onClick={handleClose}
+            >
               Cancel
             </Button>
           </div>
@@ -57,8 +69,10 @@ export default class CreateTask extends Component {
 
     this.state = {
       description: "",
+      file: "",
     };
 
+    this.onChangeFile = this.onChangeFile.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -68,19 +82,29 @@ export default class CreateTask extends Component {
       description: e.target.value,
     });
   }
+  onChangeFile(e) {
+    this.setState({
+      file: e.target.files[0],
+    });
+  }
 
   onSubmit(e) {
     e.preventDefault();
 
-    const task = {
-      description: this.state.description,
+    const formData = new FormData();
+    formData.append("description", this.state.description);
+    formData.append("file", this.state.file);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
     };
 
     axios
-      .post("http://localhost:5000/tasks/add", task)
+      .post("http://localhost:5000/tasks/add", formData, config)
       .then((res) => console.log(res.data));
 
-    window.location = "/";
+    window.location.href = "/";
   }
 
   render() {
@@ -90,6 +114,7 @@ export default class CreateTask extends Component {
           onSubmit={this.onSubmit}
           onChange={this.onChangeDescription}
           value={this.state.description}
+          onChangeFile={this.onChangeFile}
         />
       </div>
     );

@@ -1,0 +1,8 @@
+{
+  "projectName": "erlangga-backend",
+  "meta": {
+    "starter": "node-free-express-mongoose",
+    "type": "backend"
+  },
+  "hash": "4d5b323e"
+}

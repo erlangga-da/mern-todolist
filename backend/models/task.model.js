@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const taskSchema = new Schema({
     description: {type:String, required: true},
+    file: {type:String, required: false},
 }, {
     timestamps: true,
 });

@@ -11,6 +11,10 @@ import axios from "axios";
 export const ListComponent = (props) => {
   return (
     <div className="ListComponent">
+      {/* <img
+        id="image"
+        src={`http://localhost:5000/tasks/${props.tasks._id}/img`}
+      /> */}
       <div className="text-container">{props.tasks.description}</div>
       <ul>
         <li>
@@ -45,10 +49,12 @@ export default class TaskList extends Component {
     this.state = {
       tasks: [],
       description: "",
+      file: null,
       show: false,
     };
 
     this.getTask = this.getTask.bind(this);
+    this.onChangeFile = this.onChangeFile.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
@@ -73,7 +79,7 @@ export default class TaskList extends Component {
   handleShow() {
     this.setState({
       show: true,
-    });
+    })
   }
   handleClose() {
     this.setState({
@@ -88,6 +94,7 @@ export default class TaskList extends Component {
       .then((response) => {
         this.setState({
           description: response.data.description,
+          file: response.data.file,
         });
       })
 
@@ -105,16 +112,30 @@ export default class TaskList extends Component {
       description: e.target.value,
     });
   }
+  onChangeFile(e) {
+    this.setState({
+      file: e.target.files[0],
+    });
+  }
 
   onSubmit(e) {
     e.preventDefault();
 
-    const task = {
-      description: this.state.description,
+    const formData = new FormData();
+    formData.append("description", this.state.description);
+    formData.append("file", this.state.file);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
     };
 
     axios
-      .post("http://localhost:5000/tasks/update/" + window.testId, task)
+      .post(
+        "http://localhost:5000/tasks/update/" + window.testId,
+        formData,
+        config
+      )
       .then((res) => console.log(res.data));
 
     window.location = "/";
@@ -161,6 +182,13 @@ export default class TaskList extends Component {
                   required
                   value={this.state.description}
                   onChange={this.onChangeDescription}
+                />
+                <Form.Control
+                  id="input-form-modal"
+                  placeholder="Task name"
+                  type="file"
+                  name="file"
+                  onChange={this.onChangeFile}
                 />
               </Form.Group>
 
