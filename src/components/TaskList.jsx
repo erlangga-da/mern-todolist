@@ -9,35 +9,39 @@ import "../css/Modal.css";
 /* axios */
 import axios from "axios";
 export const ListComponent = (props) => {
+  const sourceImageUrl = `http://localhost:5000/tasks/${props.tasks._id}/img`
   return (
     <div className="ListComponent">
       {/* <img
         id="image"
         src={`http://localhost:5000/tasks/${props.tasks._id}/img`}
       /> */}
-      <div className="text-container">{props.tasks.description}</div>
-      <ul>
-        <li>
-          <a
-            href="#"
-            onClick={() => {
-              props.getTask(props.tasks._id);
-            }}
-          >
-            <FontAwesomeIcon icon={faPen} />
-          </a>
-        </li>
-        <li id="delete">
-          <a href="#!">
-            <FontAwesomeIcon
-              icon={faTrash}
+      <div style={{ backgroundImage : `url(${sourceImageUrl})` }} className="image-container"></div>
+      <div className="text-content">
+        <div className="text-container">{props.tasks.description}</div>
+        <ul>
+          <li>
+            <a
+              href="#"
               onClick={() => {
-                props.deleteTask(props.tasks._id);
+                props.getTask(props.tasks._id);
               }}
-            />
-          </a>
-        </li>
-      </ul>
+            >
+              <FontAwesomeIcon icon={faPen} />
+            </a>
+          </li>
+          <li id="delete">
+            <a href="#!">
+              <FontAwesomeIcon
+                icon={faTrash}
+                onClick={() => {
+                  props.deleteTask(props.tasks._id);
+                }}
+              />
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
@@ -79,7 +83,7 @@ export default class TaskList extends Component {
   handleShow() {
     this.setState({
       show: true,
-    })
+    });
   }
   handleClose() {
     this.setState({
@@ -186,6 +190,7 @@ export default class TaskList extends Component {
                 <Form.Control
                   id="input-form-modal"
                   placeholder="Task name"
+                  style={{marginTop : '10' + 'px'}}
                   type="file"
                   name="file"
                   onChange={this.onChangeFile}
@@ -209,7 +214,7 @@ export default class TaskList extends Component {
         </div>
         <div className="d-flex justify-content-center ListSection">
           <div className="ListContainer">
-            <h3>Tasks</h3>
+            <h3>Tasks - {this.state.tasks.length}</h3>
             {this.exerciseList()}
           </div>
         </div>

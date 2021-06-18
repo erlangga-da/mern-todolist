@@ -39,6 +39,7 @@ export const AddModal = (props) => {
             <Form.Control
               id="input-form-modal"
               placeholder="Task name"
+              style={{marginTop : '10' + 'px'}}
               type="file"
               name="file"
               required
@@ -71,7 +72,6 @@ export default class CreateTask extends Component {
       description: "",
       file: "",
     };
-
     this.onChangeFile = this.onChangeFile.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onSubmit = this.onSubmit.bind(this);

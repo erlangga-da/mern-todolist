@@ -1,4 +1,13 @@
 @import url(./index.css);
+.image-container{
+    height: 500px;
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 14px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 .ListSection{
     background-color: var(--bg);
 }
@@ -11,12 +20,14 @@
 }
 .ListComponent{
     background-color: var(--card-bg);
-    display: flex;
     width: 100%;
     height: fit-content;
     border-radius: 14px;
     padding: 15px 15px;
     margin: 12px 0px;
+}
+.ListComponent .text-content{
+    display: flex;
 }
 .ListComponent .text-container{
     width: 450px;
@@ -49,7 +60,7 @@
 }
 
 /* interact */
-.ListComponent:hover > ul{
+.text-content:hover > ul{
     opacity: 1;
 }
 
@@ -58,14 +69,23 @@
     .ListComponent .text-container{
         width: 300px;
     }
+    .image-container{
+        height: 300px;
+    }
 }
 @media screen and (max-width: 440px){
     .ListComponent .text-container{
         width: 250px;
     }
+    .image-container{
+        height: 250px;
+    }
 }
 @media screen and (max-width: 360px){
     .ListComponent .text-container{
         width: 180px;
+    }
+    .image-container{
+        height: 180px;
     }
 }
